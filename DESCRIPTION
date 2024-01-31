@@ -1,12 +1,20 @@
 Package: SpatioTemporalCont
-Title: What the Package Does (One Line, Title Case)
+Title: Calculate Landscape Statistics for Landcover
 Version: 0.0.0.9000
 Authors@R: 
-    person("First", "Last", , "first.last@example.com", role = c("aut", "cre"),
-           comment = c(ORCID = "YOUR-ORCID-ID"))
-Description: What the package does (one paragraph).
-License: `use_mit_license()`, `use_gpl3_license()` or friends to pick a
-    license
+    person(given = "Derek", family ="Corcoran",  
+    email = "derek.corcoran.barrios@gmail.com", role = c("aut", "cre"))
+Description: : Offers a streamlined approach to geospatial analysis, enables 
+    users to assess spatial continuity by employing a circular moving window for 
+    habitat proportion calculations within specified radii, Simultaneously, it 
+    tracks temporal changes by evaluating the duration pixels remain in the same 
+    land use category over a given time series.
+License: GPL (>= 3)
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.0.0
+Depends: 
+    R (>= 2.10)
+LazyData: true
+URL: https://github.com/derek-corcoran-barrios/SpatioTemporalCont
+BugReports: https://github.com/derek-corcoran-barrios/SpatioTemporalCont/issues
