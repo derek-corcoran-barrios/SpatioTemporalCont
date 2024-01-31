@@ -23,6 +23,7 @@ Imports:
     purrr,
     terra
 Suggests: 
+    bookdown,
     knitr,
     rmarkdown
 VignetteBuilder: knitr
