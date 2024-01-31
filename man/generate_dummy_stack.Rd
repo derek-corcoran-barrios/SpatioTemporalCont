@@ -10,8 +10,8 @@ generate_dummy_stack(Rast)
 \item{Rast}{A categorical raster (class: SpatRaster) representing landcover.}
 }
 \value{
-A stack of rasters with dummy variables, where each layer corresponds to a
-unique category in the input raster.
+A stack of rasters with dummy variables, where each layer
+corresponds to a unique category in the input raster.
 }
 \description{
 This function takes a categorical raster and generates a stack of rasters with

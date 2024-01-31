@@ -4,8 +4,8 @@
 #' dummy variables, where each layer corresponds to one of the categorical variables.
 #'
 #' @param Rast A categorical raster (class: SpatRaster) representing landcover.
-#' @return A stack of rasters with dummy variables, where each layer corresponds to a
-#'         unique category in the input raster.
+#' @return A stack of rasters with dummy variables, where each layer
+#' corresponds to a unique category in the input raster.
 #' @seealso \code{\link{SpatRaster}}, \code{\link{terra::ifel}}, \code{\link{purrr::reduce}}
 #'
 #' @examples
