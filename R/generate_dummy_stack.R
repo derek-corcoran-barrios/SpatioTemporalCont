@@ -11,22 +11,27 @@
 #' @examples
 #' # Load necessary libraries and create a sample categorical raster
 #' library(terra)
-#' sample_raster <- rast(matrix(sample(letters[1:5], 100, replace = TRUE), 10, 10))
-#' # Generate dummy variable stack
-#' dummy_stack <- generate_dummy_stack(sample_raster)
 #'
-#' @importFrom terra rast ifel
+#' # Generate dummy variable stack
+#' data(dry_wet_nature)
+#' DRY <- terra::unwrap(dry_wet_nature)
+#' dummy_stack <- generate_dummy_stack(DRY)
+#'
+#'plot(dummy_stack, colNA = "black")
+#'
+#' @importFrom terra rast ifel is.factor
 #' @importFrom purrr reduce
 #'
 #' @export
 generate_dummy_stack <- function(Rast){
   if(!(class(Rast) %in% c("SpatRaster"))) {stop("the file has to be of SpatRaster class")}
 
-  if(!is.factor(Rast)) {stop("The spatrast has to be a categorical raster")}
+  if(!terra::is.factor(Rast)) {stop("The spatrast has to be a categorical #raster")}
   # Copy the categorical raster
   Temp <- Rast
   #Get the dataframe of the levels
   Levels <- terra::levels(Rast)[[1]]
+  colnames(Levels)[2] <- "cover"
   # Calculate the number of levels in the categorical raster
   n_levels <- nrow(Levels)
   Stack <- list()

@@ -16,8 +16,13 @@ RoxygenNote: 7.2.3
 Depends: 
     R (>= 2.10)
 LazyData: true
-URL: https://github.com/derek-corcoran-barrios/SpatioTemporalCont
+URL: https://github.com/derek-corcoran-barrios/SpatioTemporalCont,
+    https://derek-corcoran-barrios.github.io/SpatioTemporalCont/
 BugReports: https://github.com/derek-corcoran-barrios/SpatioTemporalCont/issues
 Imports: 
     purrr,
     terra
+Suggests: 
+    knitr,
+    rmarkdown
+VignetteBuilder: knitr
