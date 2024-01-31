@@ -1,0 +1,10 @@
+pandoc: 2.19.2
+pkgdown: 2.0.7
+pkgdown_sha: ~
+articles:
+  getting-started: getting-started.html
+last_built: 2024-01-31T19:21Z
+urls:
+  reference: https://derek-corcoran-barrios.github.io/SpatioTemporalCont/reference
+  article: https://derek-corcoran-barrios.github.io/SpatioTemporalCont/articles
+
