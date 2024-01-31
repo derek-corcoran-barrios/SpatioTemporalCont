@@ -1,3 +1,5 @@
 ^.*\.Rproj$
 ^\.Rproj\.user$
 ^SpatioTemporalCont\.Rproj$
+^data-raw$
+^LICENSE\.md$
