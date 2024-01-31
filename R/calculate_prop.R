@@ -27,6 +27,6 @@
 calculate_prop <- function(Rast, Radius){
   dummy_stack <- SpatioTemporalCont::generate_dummy_stack(Rast = Rast)
   weights <- SpatioTemporalCont::calculate_matrix(Rast = Rast, Radius = Radius)
-  FinalStack <- terra::focal(dummy_stack, w=circle_matrix, fun="weights")
+  FinalStack <- terra::focal(dummy_stack, w=weights, fun="mean")
   return(FinalStack)
 }
