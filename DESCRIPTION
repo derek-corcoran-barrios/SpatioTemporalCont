@@ -24,6 +24,8 @@ Imports:
     terra
 Suggests: 
     bookdown,
+    ggplot2,
     knitr,
-    rmarkdown
+    rmarkdown,
+    tidyterra
 VignetteBuilder: knitr

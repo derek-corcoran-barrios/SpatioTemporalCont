@@ -44,14 +44,14 @@ devtools::install_github("derek-corcoran-barrios/SpatioTemporalCont")
 
 ## Spatial continuity
 
-Even though there is a wrap up function that can do most of the functionalities of spatial continuity we will go step by step to show how they interact together, first we will show a very upscaled fragment of the basemap 4 landuse map of Denmark, for that we will use the included dataset `dry_wet_nature` which is a wrapped dataset
+Even though there is a wrap up function that can do most of the functionalities of spatial continuity we will go step by step to show how they interact together, first we will show a very upscaled fragment of the basemap 4 landuse map of Denmark, for that we will use the included dataset `Landuse_DK` which is a wrapped dataset
 
 ```{r example}
 library(SpatioTemporalCont)
 library(terra)
 ## basic example code
-data("dry_wet_nature")
-nature <- terra::unwrap(dry_wet_nature)
+data("Landuse_DK")
+nature <- terra::unwrap(Landuse_DK)
 ```
 
 We can see the dry nature type and wet nature type of Denmark in figure \@ref(fig:PlotNature)
@@ -69,9 +69,9 @@ proportions <- calculate_prop(Rast = nature, Radius = 200)
 
 We can see the result in figure \@ref(fig:propsdenmark)
 
-```{r propsdenmark, fig.cap= "Prportion of different habitat types within Denmark"}
-plot(proportions, colNA = "black")
-
+```{r propsdenmark, fig.cap= "Prportion of different habitat types within Denmark", echo = F, message=FALSE, warning= FALSE}
+library(ggplot2)
+library(tidyterra)
+ggplot() + geom_spatraster(data = proportions) + facet_wrap(~lyr) + scale_fill_viridis_c() + theme_void()
 ```
 
-As we can see all cells are filled

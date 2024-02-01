@@ -57,15 +57,14 @@ Even though there is a wrap up function that can do most of the
 functionalities of spatial continuity we will go step by step to show
 how they interact together, first we will show a very upscaled fragment
 of the basemap 4 landuse map of Denmark, for that we will use the
-included dataset `dry_wet_nature` which is a wrapped dataset
+included dataset `Landuse_DK` which is a wrapped dataset
 
 ``` r
 library(SpatioTemporalCont)
 library(terra)
-#> terra 1.7.69
 ## basic example code
-data("dry_wet_nature")
-nature <- terra::unwrap(dry_wet_nature)
+data("Landuse_DK")
+nature <- terra::unwrap(Landuse_DK)
 ```
 
 We can see the dry nature type and wet nature type of Denmark in figure
@@ -91,23 +90,11 @@ meters to calculate the proportions of the nature raster created above:
 ``` r
 proportions <- calculate_prop(Rast = nature, Radius = 200)
 #> Starting to generate dummy stack [1/3]
-#> 
-|---------|---------|---------|---------|
-=========================================
-                                          
 #> Calculating the weight matrix [2/3]
 #> Generating final stack [3/3]
-#> 
-|---------|---------|---------|---------|
-=========================================
-                                          
 ```
 
 We can see the result in figure <a href="#fig:propsdenmark">2.2</a>
-
-``` r
-plot(proportions, colNA = "black")
-```
 
 <div class="figure">
 
@@ -121,5 +108,3 @@ habitat types within Denmark
 </p>
 
 </div>
-
-All necesary cells are filled
