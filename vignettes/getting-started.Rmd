@@ -74,3 +74,4 @@ plot(proportions, colNA = "black")
 
 ```
 
+As we can see all cells are filled

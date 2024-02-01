@@ -78,3 +78,5 @@ We can see the result in figure \@ref(fig:propsdenmark)
 plot(proportions, colNA = "black")
 
 ```
+
+All necesary cells are filled

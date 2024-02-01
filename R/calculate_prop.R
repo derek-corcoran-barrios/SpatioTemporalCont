@@ -23,7 +23,7 @@
 #'
 #' plot(proportions, colNA = "black")
 #'
-#' @importFrom terra focal
+#' @importFrom terra focal focalMat
 #' @export
 
 calculate_prop <- function(Rast, Radius, verbose = TRUE){
@@ -34,11 +34,11 @@ calculate_prop <- function(Rast, Radius, verbose = TRUE){
   if(verbose){
     message("Calculating the weight matrix [2/3]")
   }
-  weights <- SpatioTemporalCont::calculate_matrix(Rast = Rast, Radius = Radius)
+  weights <- terra::focalMat(x = Rast, d = Radius, type = "circle")
   if(verbose){
     message("Generating final stack [3/3]")
   }
-  FinalStack <- terra::focal(dummy_stack, w=weights, fun="mean", na.policy = "omit")
+  FinalStack <- terra::focal(dummy_stack, w=weights, fun="mean", na.policy = "omit", na.rm = T)
 
   return(FinalStack)
 }
