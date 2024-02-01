@@ -23,7 +23,7 @@ cl <- data.frame(id = c(1,2), Nature = c("dry nature", "wet nature"))
 
 levels(Basemap) <- cl
 
-Basemap <- terra::aggregate(Basemap, 5, fun = "modal")
+dry_wet_nature <- terra::aggregate(5, fun = "modal")
 
 dry_wet_nature <- terra::wrap(Basemap)
 
