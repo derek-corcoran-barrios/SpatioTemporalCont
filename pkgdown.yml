@@ -3,7 +3,7 @@ pkgdown: 2.0.7
 pkgdown_sha: ~
 articles:
   getting-started: getting-started.html
-last_built: 2024-02-01T05:42Z
+last_built: 2024-02-01T18:29Z
 urls:
   reference: https://derek-corcoran-barrios.github.io/SpatioTemporalCont/reference
   article: https://derek-corcoran-barrios.github.io/SpatioTemporalCont/articles
