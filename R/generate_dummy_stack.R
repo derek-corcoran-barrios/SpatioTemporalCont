@@ -6,7 +6,7 @@
 #' @param Rast A categorical raster (class: SpatRaster) representing landcover.
 #' @return A stack of rasters with dummy variables, where each layer
 #' corresponds to a unique category in the input raster.
-#' @seealso \code{\link{SpatRaster}}, \code{\link{terra::ifel}}, \code{\link{purrr::reduce}}
+#' @seealso [terra::levels]
 #'
 #' @examples
 #' # Load necessary libraries and create a sample categorical raster

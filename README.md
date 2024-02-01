@@ -6,42 +6,43 @@
 <!-- badges: start -->
 <!-- badges: end -->
 
-The ‘SpatioTemporalCont’ R package offers a comprehensive set of tools
-for assessing both spatial and temporal continuity of land use cover.
-The package is designed to analyze geospatial datasets, enabling users
-to quantify the spatial arrangement of habitats within a specified
+The ‘SpatioTemporalCont’ R package provides a robust suite of tools for
+evaluating both the spatial and temporal continuity of land use cover.
+Tailored for the analysis of geospatial datasets, this package enables
+users to quantify the spatial arrangement of habitats within a specified
 radius and track temporal changes in land use over a given time series.
 
-For spatial continuity, the package employs a circular moving window
-approach, allowing users to specify the radius of interest, such as 2000
-meters. The tool calculates the proportion of each habitat within the
-defined radius, providing insights into the spatial distribution of land
-use cover.
+## 1.1 Spatial Continuity Analysis
 
-In addition, ‘SpatioTemporalCont’ facilitates the analysis of temporal
+For spatial continuity analysis, the package employs a circular moving
+window approach, allowing users to define the radius of interest, such
+as 2000 meters. The tool calculates the proportion of each habitat
+within the specified radius, offering insights into the spatial
+distribution of land use cover. A comprehensive wrap-up function is
+available, simplifying the process and providing a holistic overview of
+spatial continuity functionalities.
+
+## 1.2 Temporal Continuity Analysis
+
+‘SpatioTemporalCont’ also facilitates the analysis of temporal
 continuity by evaluating how long a pixel has remained in the same land
 use category over a temporal sequence. This feature is particularly
 valuable for understanding the stability and persistence of land use
 patterns over time.
 
-The package’s functionality is user-friendly and integrates seamlessly
-into R workflows. It builds upon existing geospatial analysis
-capabilities, offering a streamlined workflow for spatial and temporal
-continuity assessments. Users can leverage the package to gain valuable
-insights into the dynamics of land use cover, making informed decisions
-based on both spatial and temporal perspectives.
+## 1.3 User-Friendly Functionality
 
-Developed with a focus on usability, ‘SpatioTemporalCont’ empowers
-researchers and analysts to explore, visualize, and quantify spatial and
-temporal patterns in land use data. The methods implemented in this
-package draw inspiration from well-established geospatial analysis
-principles, providing a robust and efficient toolkit for investigating
-the spatiotemporal dynamics of land use cover.”
+The package is designed with user-friendliness in mind, seamlessly
+integrating into R workflows. It builds upon existing geospatial
+analysis capabilities, offering a streamlined workflow for spatial and
+temporal continuity assessments. Users can leverage the package to gain
+valuable insights into the dynamics of land use cover, enabling informed
+decision-making based on both spatial and temporal perspectives.
 
-## 1.1 Installation
+## 1.4 Installation
 
-You can install the development version of SpatioTemporalCont from
-[GitHub](https://github.com/) with:
+To install the development version of ‘SpatioTemporalCont’ from
+[GitHub](https://github.com/), use the following code:
 
 ``` r
 # install.packages("devtools")
@@ -78,6 +79,56 @@ We can see the dry nature type and wet nature type of Denmark in figure
 
 <span id="fig:PlotNature"></span>Figure 2.1: Areas in denmark bellonging
 to dry and wet nature
+
+</p>
+
+</div>
+
+Now we can use the `calculate_prop` to calculate the proportion of each
+landuse in a certain radius, as an example we will use a radius of 200
+meters to calculate the proportions of the nature raster created above:
+
+``` r
+proportions <- calculate_prop(Rast = nature, Radius = 200)
+#> Starting to generate dummy stack [1/3]
+#> 
+|---------|---------|---------|---------|
+=========================================
+                                          
+
+|---------|---------|---------|---------|
+=========================================
+                                          
+
+|---------|---------|---------|---------|
+=========================================
+                                          
+
+|---------|---------|---------|---------|
+=========================================
+                                          
+#> Calculating the weight matrix [2/3]
+#> Generating final stack [3/3]
+#> 
+|---------|---------|---------|---------|
+=========================================
+                                          
+```
+
+We can see the result in figure <a href="#fig:propsdenmark">2.2</a>
+
+``` r
+plot(proportions, colNA = "black")
+```
+
+<div class="figure">
+
+<img src="man/figures/README-propsdenmark-1.png" alt="Prportion of different habitat types within Denmark" width="100%" />
+
+<p class="caption">
+
+<span id="fig:propsdenmark"></span>Figure 2.2: Prportion of different
+habitat types within Denmark
 
 </p>
 

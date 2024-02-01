@@ -30,5 +30,5 @@ plot(terra::rast(circle_matrix), colNA = "black")
 
 }
 \seealso{
-\code{\link{SpatRaster}}, \code{\link{terra::focal}}
+\link[terra:factors]{terra::focal}
 }

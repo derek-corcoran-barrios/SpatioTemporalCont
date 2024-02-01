@@ -6,7 +6,7 @@
 #' @param Rast A raster (class: SpatRaster).
 #' @param Radius A Radius in the units of the raster, to generate the weight.
 #' @return A square matrix with the weights to be used in a focal function
-#' @seealso \code{\link{SpatRaster}}, \code{\link{terra::focal}}
+#' @seealso [terra::focal][terra::levels]
 #'
 #' @examples
 #' # Load necessary libraries and create a sample categorical raster

@@ -4,13 +4,16 @@
 \alias{calculate_prop}
 \title{Calculate the proportion of each landuse in each cell of a raster}
 \usage{
-calculate_prop(Rast, Radius)
+calculate_prop(Rast, Radius, verbose = TRUE)
 }
 \arguments{
 \item{Rast}{A raster (class: SpatRaster).}
 
 \item{Radius}{A Radius in the units of the raster, to generate the
 proprotion.}
+
+\item{verbose}{logical, if true (default), then messages of the progress is
+written as messages in the function}
 }
 \value{
 A stack of rasters with proportions, where each layer corresponds
@@ -33,5 +36,5 @@ plot(proportions, colNA = "black")
 
 }
 \seealso{
-\code{\link{SpatRaster}}, \code{\link{terra::focal}}
+\link[terra:factors]{terra::focal}
 }

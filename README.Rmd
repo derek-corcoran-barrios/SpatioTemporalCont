@@ -21,19 +21,23 @@ knitr::opts_chunk$set(
 <!-- badges: start -->
 <!-- badges: end -->
 
-The 'SpatioTemporalCont' R package offers a comprehensive set of tools for assessing both spatial and temporal continuity of land use cover. The package is designed to analyze geospatial datasets, enabling users to quantify the spatial arrangement of habitats within a specified radius and track temporal changes in land use over a given time series.
+The 'SpatioTemporalCont' R package provides a robust suite of tools for evaluating both the spatial and temporal continuity of land use cover. Tailored for the analysis of geospatial datasets, this package enables users to quantify the spatial arrangement of habitats within a specified radius and track temporal changes in land use over a given time series.
 
-For spatial continuity, the package employs a circular moving window approach, allowing users to specify the radius of interest, such as 2000 meters. The tool calculates the proportion of each habitat within the defined radius, providing insights into the spatial distribution of land use cover.
+## Spatial Continuity Analysis
 
-In addition, 'SpatioTemporalCont' facilitates the analysis of temporal continuity by evaluating how long a pixel has remained in the same land use category over a temporal sequence. This feature is particularly valuable for understanding the stability and persistence of land use patterns over time.
+For spatial continuity analysis, the package employs a circular moving window approach, allowing users to define the radius of interest, such as 2000 meters. The tool calculates the proportion of each habitat within the specified radius, offering insights into the spatial distribution of land use cover. A comprehensive wrap-up function is available, simplifying the process and providing a holistic overview of spatial continuity functionalities.
 
-The package's functionality is user-friendly and integrates seamlessly into R workflows. It builds upon existing geospatial analysis capabilities, offering a streamlined workflow for spatial and temporal continuity assessments. Users can leverage the package to gain valuable insights into the dynamics of land use cover, making informed decisions based on both spatial and temporal perspectives.
+## Temporal Continuity Analysis
 
-Developed with a focus on usability, 'SpatioTemporalCont' empowers researchers and analysts to explore, visualize, and quantify spatial and temporal patterns in land use data. The methods implemented in this package draw inspiration from well-established geospatial analysis principles, providing a robust and efficient toolkit for investigating the spatiotemporal dynamics of land use cover."
+'SpatioTemporalCont' also facilitates the analysis of temporal continuity by evaluating how long a pixel has remained in the same land use category over a temporal sequence. This feature is particularly valuable for understanding the stability and persistence of land use patterns over time.
+
+## User-Friendly Functionality
+
+The package is designed with user-friendliness in mind, seamlessly integrating into R workflows. It builds upon existing geospatial analysis capabilities, offering a streamlined workflow for spatial and temporal continuity assessments. Users can leverage the package to gain valuable insights into the dynamics of land use cover, enabling informed decision-making based on both spatial and temporal perspectives.
 
 ## Installation
 
-You can install the development version of SpatioTemporalCont from [GitHub](https://github.com/) with:
+To install the development version of 'SpatioTemporalCont' from [GitHub](https://github.com/), use the following code: 
 
 ``` r
 # install.packages("devtools")
@@ -61,3 +65,16 @@ plot(nature, colNA = "black")
 ```
 
 
+Now we can use the `calculate_prop` to calculate the proportion of each landuse in a certain radius, as an example we will use a radius of 200 meters to calculate the proportions of the nature raster created above:
+
+```{r createProp}
+proportions <- calculate_prop(Rast = nature, Radius = 200)
+
+```
+
+We can see the result in figure \@ref(fig:propsdenmark)
+
+```{r propsdenmark, fig.cap= "Prportion of different habitat types within Denmark"}
+plot(proportions, colNA = "black")
+
+```

@@ -30,5 +30,5 @@ plot(dummy_stack, colNA = "black")
 
 }
 \seealso{
-\code{\link{SpatRaster}}, \code{\link{terra::ifel}}, \code{\link{purrr::reduce}}
+\link[terra:factors]{terra::levels}
 }
