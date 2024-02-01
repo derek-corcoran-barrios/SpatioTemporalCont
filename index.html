@@ -76,15 +76,26 @@
 </h1></div>
 <!-- badges: start -->
 <!-- badges: end -->
-<p>The ‘SpatioTemporalCont’ R package offers a comprehensive set of tools for assessing both spatial and temporal continuity of land use cover. The package is designed to analyze geospatial datasets, enabling users to quantify the spatial arrangement of habitats within a specified radius and track temporal changes in land use over a given time series.</p>
-<p>For spatial continuity, the package employs a circular moving window approach, allowing users to specify the radius of interest, such as 2000 meters. The tool calculates the proportion of each habitat within the defined radius, providing insights into the spatial distribution of land use cover.</p>
-<p>In addition, ‘SpatioTemporalCont’ facilitates the analysis of temporal continuity by evaluating how long a pixel has remained in the same land use category over a temporal sequence. This feature is particularly valuable for understanding the stability and persistence of land use patterns over time.</p>
-<p>The package’s functionality is user-friendly and integrates seamlessly into R workflows. It builds upon existing geospatial analysis capabilities, offering a streamlined workflow for spatial and temporal continuity assessments. Users can leverage the package to gain valuable insights into the dynamics of land use cover, making informed decisions based on both spatial and temporal perspectives.</p>
-<p>Developed with a focus on usability, ‘SpatioTemporalCont’ empowers researchers and analysts to explore, visualize, and quantify spatial and temporal patterns in land use data. The methods implemented in this package draw inspiration from well-established geospatial analysis principles, providing a robust and efficient toolkit for investigating the spatiotemporal dynamics of land use cover.”</p>
+<p>The ‘SpatioTemporalCont’ R package provides a robust suite of tools for evaluating both the spatial and temporal continuity of land use cover. Tailored for the analysis of geospatial datasets, this package enables users to quantify the spatial arrangement of habitats within a specified radius and track temporal changes in land use over a given time series.</p>
 <div class="section level2">
-<h2 id="id_11-installation">1.1 Installation<a class="anchor" aria-label="anchor" href="#id_11-installation"></a>
+<h2 id="id_11-spatial-continuity-analysis">1.1 Spatial Continuity Analysis<a class="anchor" aria-label="anchor" href="#id_11-spatial-continuity-analysis"></a>
 </h2>
-<p>You can install the development version of SpatioTemporalCont from <a href="https://github.com/" class="external-link">GitHub</a> with:</p>
+<p>For spatial continuity analysis, the package employs a circular moving window approach, allowing users to define the radius of interest, such as 2000 meters. The tool calculates the proportion of each habitat within the specified radius, offering insights into the spatial distribution of land use cover. A comprehensive wrap-up function is available, simplifying the process and providing a holistic overview of spatial continuity functionalities.</p>
+</div>
+<div class="section level2">
+<h2 id="id_12-temporal-continuity-analysis">1.2 Temporal Continuity Analysis<a class="anchor" aria-label="anchor" href="#id_12-temporal-continuity-analysis"></a>
+</h2>
+<p>‘SpatioTemporalCont’ also facilitates the analysis of temporal continuity by evaluating how long a pixel has remained in the same land use category over a temporal sequence. This feature is particularly valuable for understanding the stability and persistence of land use patterns over time.</p>
+</div>
+<div class="section level2">
+<h2 id="id_13-user-friendly-functionality">1.3 User-Friendly Functionality<a class="anchor" aria-label="anchor" href="#id_13-user-friendly-functionality"></a>
+</h2>
+<p>The package is designed with user-friendliness in mind, seamlessly integrating into R workflows. It builds upon existing geospatial analysis capabilities, offering a streamlined workflow for spatial and temporal continuity assessments. Users can leverage the package to gain valuable insights into the dynamics of land use cover, enabling informed decision-making based on both spatial and temporal perspectives.</p>
+</div>
+<div class="section level2">
+<h2 id="id_14-installation">1.4 Installation<a class="anchor" aria-label="anchor" href="#id_14-installation"></a>
+</h2>
+<p>To install the development version of ‘SpatioTemporalCont’ from <a href="https://github.com/" class="external-link">GitHub</a>, use the following code:</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># install.packages("devtools")</span></span>
 <span><span class="fu">devtools</span><span class="fu">::</span><span class="fu">install_github</span><span class="op">(</span><span class="st">"derek-corcoran-barrios/SpatioTemporalCont"</span><span class="op">)</span></span></code></pre></div>
@@ -110,6 +121,41 @@
 <p class="caption">
 </p>
 <p><span id="fig:PlotNature"></span>Figure 2.1: Areas in denmark bellonging to dry and wet nature</p>
+
+</div>
+<p>Now we can use the <code>calculate_prop</code> to calculate the proportion of each landuse in a certain radius, as an example we will use a radius of 200 meters to calculate the proportions of the nature raster created above:</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>proportions <span class="ot">&lt;-</span> <span class="fu">calculate_prop</span>(<span class="at">Rast =</span> nature, <span class="at">Radius =</span> <span class="dv">200</span>)</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Starting to generate dummy stack [1/3]</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="sc">|---------</span><span class="er">|</span><span class="sc">---------</span><span class="er">|</span><span class="sc">---------</span><span class="er">|</span><span class="sc">---------</span><span class="er">|</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="er">=========================================</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>                                          </span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="er">|</span><span class="sc">---------</span><span class="er">|</span><span class="sc">---------</span><span class="er">|</span><span class="sc">---------</span><span class="er">|</span><span class="sc">---------</span><span class="er">|</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="er">=========================================</span></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>                                          </span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a><span class="er">|</span><span class="sc">---------</span><span class="er">|</span><span class="sc">---------</span><span class="er">|</span><span class="sc">---------</span><span class="er">|</span><span class="sc">---------</span><span class="er">|</span></span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a><span class="er">=========================================</span></span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>                                          </span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a><span class="er">|</span><span class="sc">---------</span><span class="er">|</span><span class="sc">---------</span><span class="er">|</span><span class="sc">---------</span><span class="er">|</span><span class="sc">---------</span><span class="er">|</span></span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a><span class="er">=========================================</span></span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a>                                          </span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Calculating the weight matrix [2/3]</span></span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Generating final stack [3/3]</span></span>
+<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a><span class="er">|</span><span class="sc">---------</span><span class="er">|</span><span class="sc">---------</span><span class="er">|</span><span class="sc">---------</span><span class="er">|</span><span class="sc">---------</span><span class="er">|</span></span>
+<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a><span class="er">=========================================</span></span>
+<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a>                                          </span></code></pre></div>
+<p>We can see the result in figure <a href="#fig:propsdenmark">2.2</a></p>
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/pkg/terra/man/plot.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">proportions</span>, colNA <span class="op">=</span> <span class="st">"black"</span><span class="op">)</span></span></code></pre></div>
+<div class="figure">
+<p><img src="reference/figures/README-propsdenmark-1.png" alt="Prportion of different habitat types within Denmark" width="100%"></p>
+<p class="caption">
+</p>
+<p><span id="fig:propsdenmark"></span>Figure 2.2: Prportion of different habitat types within Denmark</p>
 
 </div>
 </div>
