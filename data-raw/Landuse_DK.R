@@ -36,7 +36,8 @@ for(i in 1:nrow(rat)){
 }
 
 key <- rat %>% dplyr::select(new_id, C_03) %>% distinct() |> dplyr::arrange(new_id) |>
-  dplyr::mutate(C_03 = str_trim(C_03)) |> dplyr::rename(Landuse = C_03)
+  dplyr::mutate(C_03 = str_trim(C_03)) |> dplyr::rename(Landuse = C_03) |>
+  dplyr::filter(!(Landuse %in% c("Germany", "Sea")))
 
 basemap_d <- basemap
 
