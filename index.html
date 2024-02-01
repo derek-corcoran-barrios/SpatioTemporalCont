@@ -107,14 +107,13 @@
 <div class="section level2">
 <h2 id="id_21-spatial-continuity">2.1 Spatial continuity<a class="anchor" aria-label="anchor" href="#id_21-spatial-continuity"></a>
 </h2>
-<p>Even though there is a wrap up function that can do most of the functionalities of spatial continuity we will go step by step to show how they interact together, first we will show a very upscaled fragment of the basemap 4 landuse map of Denmark, for that we will use the included dataset <code>dry_wet_nature</code> which is a wrapped dataset</p>
+<p>Even though there is a wrap up function that can do most of the functionalities of spatial continuity we will go step by step to show how they interact together, first we will show a very upscaled fragment of the basemap 4 landuse map of Denmark, for that we will use the included dataset <code>Landuse_DK</code> which is a wrapped dataset</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/derek-corcoran-barrios/SpatioTemporalCont" class="external-link">SpatioTemporalCont</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://rspatial.org/" class="external-link">terra</a></span><span class="op">)</span></span>
-<span><span class="co">#&gt; terra 1.7.69</span></span>
 <span><span class="co">## basic example code</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="st">"dry_wet_nature"</span><span class="op">)</span></span>
-<span><span class="va">nature</span> <span class="op">&lt;-</span> <span class="fu">terra</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/terra/man/wrap.html" class="external-link">unwrap</a></span><span class="op">(</span><span class="va">dry_wet_nature</span><span class="op">)</span></span></code></pre></div>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="st">"Landuse_DK"</span><span class="op">)</span></span>
+<span><span class="va">nature</span> <span class="op">&lt;-</span> <span class="fu">terra</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/terra/man/wrap.html" class="external-link">unwrap</a></span><span class="op">(</span><span class="va">Landuse_DK</span><span class="op">)</span></span></code></pre></div>
 <p>We can see the dry nature type and wet nature type of Denmark in figure <a href="#fig:PlotNature">2.1</a></p>
 <div class="figure">
 <p><img src="reference/figures/README-PlotNature-1.png" alt="Areas in denmark bellonging to dry and wet nature" width="100%"></p>
@@ -124,21 +123,12 @@
 
 </div>
 <p>Now we can use the <code>calculate_prop</code> to calculate the proportion of each landuse in a certain radius, as an example we will use a radius of 200 meters to calculate the proportions of the nature raster created above:</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>proportions <span class="ot">&lt;-</span> <span class="fu">calculate_prop</span>(<span class="at">Rast =</span> nature, <span class="at">Radius =</span> <span class="dv">200</span>)</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Starting to generate dummy stack [1/3]</span></span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="sc">|---------</span><span class="er">|</span><span class="sc">---------</span><span class="er">|</span><span class="sc">---------</span><span class="er">|</span><span class="sc">---------</span><span class="er">|</span></span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="er">=========================================</span></span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>                                          </span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Calculating the weight matrix [2/3]</span></span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Generating final stack [3/3]</span></span>
-<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a><span class="er">|</span><span class="sc">---------</span><span class="er">|</span><span class="sc">---------</span><span class="er">|</span><span class="sc">---------</span><span class="er">|</span><span class="sc">---------</span><span class="er">|</span></span>
-<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a><span class="er">=========================================</span></span>
-<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>                                          </span></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">proportions</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/calculate_prop.html">calculate_prop</a></span><span class="op">(</span>Rast <span class="op">=</span> <span class="va">nature</span>, Radius <span class="op">=</span> <span class="fl">200</span><span class="op">)</span></span>
+<span><span class="co">#&gt; Starting to generate dummy stack [1/3]</span></span>
+<span><span class="co">#&gt; Calculating the weight matrix [2/3]</span></span>
+<span><span class="co">#&gt; Generating final stack [3/3]</span></span></code></pre></div>
 <p>We can see the result in figure <a href="#fig:propsdenmark">2.2</a></p>
-<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/pkg/terra/man/plot.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">proportions</span>, colNA <span class="op">=</span> <span class="st">"black"</span><span class="op">)</span></span></code></pre></div>
 <div class="figure">
 <p><img src="reference/figures/README-propsdenmark-1.png" alt="Prportion of different habitat types within Denmark" width="100%"></p>
 <p class="caption">
@@ -146,7 +136,6 @@
 <p><span id="fig:propsdenmark"></span>Figure 2.2: Prportion of different habitat types within Denmark</p>
 
 </div>
-<p>All necesary cells are filled</p>
 </div>
 </div>
 
