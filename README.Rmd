@@ -65,10 +65,12 @@ plot(nature, colNA = "black")
 ```
 
 
-Now we can use the `calculate_prop` to calculate the proportion of each landuse in a certain radius, as an example we will use a radius of 200 meters to calculate the proportions of the nature raster created above:
+Now we can use the `calculate_prop` to calculate the proportion of each landuse in a certain radius, as an example we will use a radius of 200 meters to calculate the proportions of the nature raster created above, optionally, you can decide which landuses to calculate by using the argument `Vars`:
 
 ```{r createProp}
-proportions <- calculate_prop(Rast = nature, Radius = 200)
+proportions <- calculate_prop(Rast = nature, 
+                              Radius = 200, 
+                              Vars = c("Agriculture", "Forest"))
 ```
 
 We can see the result in figure \@ref(fig:propsdenmark)

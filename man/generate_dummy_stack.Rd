@@ -4,10 +4,13 @@
 \alias{generate_dummy_stack}
 \title{Generate Dummy Variable Stack from Categorical Raster}
 \usage{
-generate_dummy_stack(Rast)
+generate_dummy_stack(Rast, Vars = NULL)
 }
 \arguments{
 \item{Rast}{A categorical raster (class: SpatRaster) representing landcover.}
+
+\item{Vars}{if not null, a character vector to select the variables in
+which to use the function, see examples}
 }
 \value{
 A stack of rasters with dummy variables, where each layer
@@ -22,12 +25,17 @@ dummy variables, where each layer corresponds to one of the categorical variable
 library(terra)
 
 # Generate dummy variable stack
-data(dry_wet_nature)
-DRY <- terra::unwrap(dry_wet_nature)
-dummy_stack <- generate_dummy_stack(DRY)
+data("Landuse_DK")
+Nature <- terra::unwrap(Landuse_DK)
+dummy_stack <- generate_dummy_stack(Nature)
 
 plot(dummy_stack, colNA = "black")
 
+# Selecting only some variables
+
+ dummy_stack2 <- generate_dummy_stack(Nature,
+        Vars = c("Agriculture", "Forest"))
+ plot(dummy_stack2, colNA = "black")
 }
 \seealso{
 \link[terra:factors]{terra::levels}

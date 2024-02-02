@@ -62,6 +62,7 @@ included dataset `Landuse_DK` which is a wrapped dataset
 ``` r
 library(SpatioTemporalCont)
 library(terra)
+#> terra 1.7.69
 ## basic example code
 data("Landuse_DK")
 nature <- terra::unwrap(Landuse_DK)
@@ -85,10 +86,14 @@ to dry and wet nature
 
 Now we can use the `calculate_prop` to calculate the proportion of each
 landuse in a certain radius, as an example we will use a radius of 200
-meters to calculate the proportions of the nature raster created above:
+meters to calculate the proportions of the nature raster created above,
+optionally, you can decide which landuses to calculate by using the
+argument `Vars`:
 
 ``` r
-proportions <- calculate_prop(Rast = nature, Radius = 200)
+proportions <- calculate_prop(Rast = nature, 
+                              Radius = 200, 
+                              Vars = c("Agriculture", "Forest"))
 #> Starting to generate dummy stack [1/3]
 #> Calculating the weight matrix [2/3]
 #> Generating final stack [3/3]
