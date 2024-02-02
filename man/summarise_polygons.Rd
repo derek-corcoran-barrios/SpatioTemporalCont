@@ -55,7 +55,7 @@ Test
 
 TestBoth <- summarise_polygons(Rast = Landuse, Polygons = v,
   Vars = c("Agriculture","Forest"), type = "Both", dist = 200)
-
+TestBoth
 }
 \seealso{
 \link[terra:factors]{terra::zonal}

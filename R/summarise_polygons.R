@@ -36,7 +36,7 @@
 #'
 #' TestBoth <- summarise_polygons(Rast = Landuse, Polygons = v,
 #'   Vars = c("Agriculture","Forest"), type = "Both", dist = 200)
-#'
+#' TestBoth
 #' @importFrom terra rast ifel is.factor crop mask zonal
 #' @importFrom purrr reduce
 #' @export
@@ -78,7 +78,7 @@ summarise_polygons <- function(Rast, Polygons, Vars, dist = NULL, type = "Inside
   if(type == "Inside"){
     DF <- terra::zonal(Stack, v, "mean")
   }else  if(type == "Both"){
-    DF <- terra::zonal(Stack, v, "mean")
+    DF <- terra::zonal(Stack, BufferPols, "mean")
   }
   return(DF)
 }
