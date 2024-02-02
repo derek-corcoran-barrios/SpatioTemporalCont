@@ -37,6 +37,11 @@
 #' TestBoth <- summarise_polygons(Rast = Landuse, Polygons = v,
 #'   Vars = c("Agriculture","Forest"), type = "Both", dist = 200)
 #' TestBoth
+#' # Example with type outside
+#'
+#' TestOut <- summarise_polygons(Rast = Landuse, Polygons = v,
+#'   Vars = c("Agriculture","Forest"), type = "Outside", dist = 200)
+#' TestOut
 #' @importFrom terra rast ifel is.factor crop mask zonal
 #' @importFrom purrr reduce
 #' @export
@@ -59,6 +64,14 @@ summarise_polygons <- function(Rast, Polygons, Vars, dist = NULL, type = "Inside
       terra::crop(BufferPols) |>
       terra::mask(BufferPols)
   }
+  else if(type == "Outside"){
+    message("Using option = Outside")
+    BufferPols <- terra::buffer(Polygons, dist)
+    ErasedPols <- terra::erase(BufferPols, v)
+    Temp <- Temp |>
+      terra::crop(ErasedPols) |>
+      terra::mask(ErasedPols)
+  }
 
   #Get the dataframe of the levels
   Levels <- terra::levels(Rast)[[1]]
@@ -79,6 +92,8 @@ summarise_polygons <- function(Rast, Polygons, Vars, dist = NULL, type = "Inside
     DF <- terra::zonal(Stack, v, "mean")
   }else  if(type == "Both"){
     DF <- terra::zonal(Stack, BufferPols, "mean")
+  }else  if(type == "Outside"){
+    DF <- terra::zonal(Stack, ErasedPols, "mean")
   }
   return(DF)
 }
