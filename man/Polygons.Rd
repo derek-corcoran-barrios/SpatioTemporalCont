@@ -22,4 +22,14 @@ Polygons
 \description{
 A matrix to be used as polygons
 }
+\examples{
+
+library(terra)
+data(Polygons)
+data("Landuse_DK")
+Landuse <- terra::unwrap(Landuse_DK)
+
+v <- vect(Polygons, "polygons", crs = terra::crs(Landuse))
+plot(v)
+}
 \keyword{datasets}

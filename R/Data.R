@@ -53,7 +53,7 @@
 #'   \item{y}{northing}
 #'   ...
 #' }
-#' @example
+#' @examples
 #'
 #' library(terra)
 #' data(Polygons)
