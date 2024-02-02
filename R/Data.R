@@ -39,3 +39,27 @@
 #' }
 #' @source <https://envs.au.dk/en/research-areas/society-environment-and-resources/land-use-and-gis/basemap>
 "Landuse_DK"
+
+#' Polygons
+#'
+#' A matrix to be used as polygons
+#'
+#'
+#' @format ## `Polygons`
+#' A matrix with 3 columns:
+#' \describe{
+#'   \item{id}{id of the polygon}
+#'   \item{x}{easting}
+#'   \item{y}{northing}
+#'   ...
+#' }
+#' @example
+#'
+#' library(terra)
+#' data(Polygons)
+#' data("Landuse_DK")
+#' Landuse <- terra::unwrap(Landuse_DK)
+#'
+#' v <- vect(Polygons, "polygons", crs = terra::crs(Landuse))
+#' plot(v)
+"Polygons"

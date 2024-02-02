@@ -36,6 +36,8 @@ Polygons <- structure(list(geom = c(1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 3, 3, 3,
                                                                                                                                                                       0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                                                                                                                                                                       0, 0, 0, 0, 0, 0, 0)), class = "data.frame", row.names = c(NA,
                                                                                                                                                                                                                                  -50L)) |>
-  dplyr::select(geom, x, y)
+  dplyr::select(geom, x, y) |>
+  dplyr::rename(id= geom) |>
+  as.matrix()
 
 usethis::use_data(Polygons, overwrite = TRUE)
