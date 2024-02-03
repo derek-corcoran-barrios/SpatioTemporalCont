@@ -81,3 +81,47 @@ library(tidyterra)
 ggplot() + geom_spatraster(data = proportions) + facet_wrap(~lyr) + scale_fill_viridis_c() + theme_void()
 ```
 
+## Summarise data from polygons
+
+### Inside the polygons
+
+```{r}
+data(Polygons)
+data("Landuse_DK")
+Landuse <- terra::unwrap(Landuse_DK)
+
+v <- vect(Polygons, "polygons", crs = terra::crs(Landuse))
+Test <- summarise_polygons(Rast = Landuse, Polygons = v,
+                           Vars = c("Agriculture","Forest"))
+```
+
+
+```{r, echo=FALSE}
+knitr::kable(Test)
+```
+
+## Inside and outside the polygon
+
+```{r}
+TestBoth <- summarise_polygons(Rast = Landuse, Polygons = v,
+                               Vars = c("Agriculture","Forest"), 
+                               type = "Both", dist = 200)
+```
+
+```{r, echo = F}
+knitr::kable(TestBoth)
+```
+
+## Outside the polygon
+
+```{r}
+TestOut <- summarise_polygons(Rast = Landuse, 
+                              Polygons = v,
+                              Vars = c("Agriculture","Forest"), 
+                              type = "Outside", dist = 200)
+```
+
+```{r, echo = F}
+knitr::kable(TestOut)
+```
+

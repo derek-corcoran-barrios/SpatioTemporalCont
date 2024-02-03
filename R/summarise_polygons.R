@@ -67,7 +67,7 @@ summarise_polygons <- function(Rast, Polygons, Vars, dist = NULL, type = "Inside
   else if(type == "Outside"){
     message("Using option = Outside")
     BufferPols <- terra::buffer(Polygons, dist)
-    ErasedPols <- terra::erase(BufferPols, v)
+    ErasedPols <- terra::erase(BufferPols, Polygons)
     Temp <- Temp |>
       terra::crop(ErasedPols) |>
       terra::mask(ErasedPols)

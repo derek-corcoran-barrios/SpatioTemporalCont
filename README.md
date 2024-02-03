@@ -97,6 +97,10 @@ proportions <- calculate_prop(Rast = nature,
 #> Starting to generate dummy stack [1/3]
 #> Calculating the weight matrix [2/3]
 #> Generating final stack [3/3]
+#> 
+|---------|---------|---------|---------|
+=========================================
+                                          
 ```
 
 We can see the result in figure <a href="#fig:propsdenmark">2.2</a>
@@ -113,3 +117,76 @@ habitat types within Denmark
 </p>
 
 </div>
+
+## 2.2 Summarise data from polygons
+
+### 2.2.1 Inside the polygons
+
+``` r
+data(Polygons)
+data("Landuse_DK")
+Landuse <- terra::unwrap(Landuse_DK)
+
+v <- vect(Polygons, "polygons", crs = terra::crs(Landuse))
+Test <- summarise_polygons(Rast = Landuse, Polygons = v,
+                           Vars = c("Agriculture","Forest"))
+#> Using option = inside
+```
+
+| Agriculture |    Forest |
+|------------:|----------:|
+|   0.6039312 | 0.2157248 |
+|   0.8775385 | 0.0381538 |
+|   0.5605780 | 0.2782512 |
+|   0.7852426 | 0.1004881 |
+|   0.7750973 | 0.0630350 |
+|   0.4416529 | 0.3385124 |
+|   0.7544332 | 0.0581369 |
+|   0.5909091 | 0.3315508 |
+|   0.3793361 | 0.3222678 |
+|   0.4157738 | 0.1976190 |
+
+## 2.3 Inside and outside the polygon
+
+``` r
+TestBoth <- summarise_polygons(Rast = Landuse, Polygons = v,
+                               Vars = c("Agriculture","Forest"), 
+                               type = "Both", dist = 200)
+#> Using option = Both
+```
+
+| Agriculture |    Forest |
+|------------:|----------:|
+|   0.6237364 | 0.1973044 |
+|   0.8721483 | 0.0451521 |
+|   0.5581691 | 0.2790846 |
+|   0.7745592 | 0.0982368 |
+|   0.7435345 | 0.0662716 |
+|   0.4213980 | 0.3403709 |
+|   0.7583007 | 0.0608373 |
+|   0.5659341 | 0.3095238 |
+|   0.4007720 | 0.3126407 |
+|   0.4144461 | 0.1931557 |
+
+## 2.4 Outside the polygon
+
+``` r
+TestOut <- summarise_polygons(Rast = Landuse, 
+                              Polygons = v,
+                              Vars = c("Agriculture","Forest"), 
+                              type = "Outside", dist = 200)
+#> Using option = Outside
+```
+
+| Agriculture |    Forest |
+|------------:|----------:|
+|   0.6871069 | 0.1383648 |
+|   0.8538622 | 0.0688935 |
+|   0.5436242 | 0.2841163 |
+|   0.6981520 | 0.0821355 |
+|   0.6725044 | 0.0735552 |
+|   0.2937500 | 0.3520833 |
+|   0.8020305 | 0.0913706 |
+|   0.5116279 | 0.2616279 |
+|   0.5350467 | 0.2523364 |
+|   0.4011887 | 0.1485884 |
