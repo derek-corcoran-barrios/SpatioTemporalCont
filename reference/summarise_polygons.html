@@ -148,9 +148,18 @@ original raster.</p>
 <span class="r-in"><span><span class="va">TestOut</span> <span class="op">&lt;-</span> <span class="fu">summarise_polygons</span><span class="op">(</span>Rast <span class="op">=</span> <span class="va">Landuse</span>, Polygons <span class="op">=</span> <span class="va">v</span>,</span></span>
 <span class="r-in"><span>  Vars <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Agriculture"</span>,<span class="st">"Forest"</span><span class="op">)</span>, type <span class="op">=</span> <span class="st">"Outside"</span>, dist <span class="op">=</span> <span class="fl">200</span><span class="op">)</span></span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Using option = Outside</span>
-<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in h(simpleError(msg, call)):</span> error in evaluating the argument 'y' in selecting a method for function 'erase': object 'v' not found</span>
 <span class="r-in"><span><span class="va">TestOut</span></span></span>
-<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in eval(expr, envir, enclos):</span> object 'TestOut' not found</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    Agriculture     Forest</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1    0.6871069 0.13836478</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2    0.8538622 0.06889353</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3    0.5436242 0.28411633</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4    0.6981520 0.08213552</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5    0.6725044 0.07355517</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 6    0.2937500 0.35208333</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 7    0.8020305 0.09137056</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 8    0.5116279 0.26162791</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 9    0.5350467 0.25233645</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 10   0.4011887 0.14858841</span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>
