@@ -4,6 +4,8 @@
 # 1 SpatioTemporalCont
 
 <!-- badges: start -->
+
+[![R-CMD-check](https://github.com/derek-corcoran-barrios/SpatioTemporalCont/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/derek-corcoran-barrios/SpatioTemporalCont/actions/workflows/R-CMD-check.yaml)
 <!-- badges: end -->
 
 The ‘SpatioTemporalCont’ R package provides a robust suite of tools for
@@ -97,10 +99,6 @@ proportions <- calculate_prop(Rast = nature,
 #> Starting to generate dummy stack [1/3]
 #> Calculating the weight matrix [2/3]
 #> Generating final stack [3/3]
-#> 
-|---------|---------|---------|---------|
-=========================================
-                                          
 ```
 
 We can see the result in figure <a href="#fig:propsdenmark">2.2</a>

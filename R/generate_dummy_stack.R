@@ -17,7 +17,8 @@
 #' # Generate dummy variable stack
 #' data("Landuse_DK")
 #' Nature <- terra::unwrap(Landuse_DK)
-#' dummy_stack <- generate_dummy_stack(Nature)
+#' dummy_stack <- generate_dummy_stack(Nature,
+#'                                     Vars = c("Agriculture", "Forest"))
 #'
 #' plot(dummy_stack, colNA = "black")
 #'

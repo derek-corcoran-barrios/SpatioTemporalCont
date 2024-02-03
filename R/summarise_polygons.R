@@ -6,6 +6,7 @@
 #'
 #'
 #' @param Rast A raster (class: SpatRaster).
+#' @param Polygons a SpatVector object with the needed polygons.
 #' @param Vars if not null, a character vector to select the variables in
 #' which to use the function, see examples
 #' @param verbose logical, if true (default), then messages of the progress is
@@ -29,7 +30,7 @@
 #'
 #' v <- vect(Polygons, "polygons", crs = terra::crs(Landuse))
 #' Test <- summarise_polygons(Rast = Landuse, Polygons = v,
-#' Vars = c("Agriculture","Forest"))
+#'                             Vars = c("Agriculture","Forest"))
 #'
 #' Test
 #'# Example with type both
