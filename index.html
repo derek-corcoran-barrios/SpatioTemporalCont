@@ -75,7 +75,7 @@
 <div class="page-header"><h1 id="id_1-spatiotemporalcont">1 SpatioTemporalCont<a class="anchor" aria-label="anchor" href="#id_1-spatiotemporalcont"></a>
 </h1></div>
 <!-- badges: start -->
-<!-- badges: end -->
+
 <p>The ‘SpatioTemporalCont’ R package provides a robust suite of tools for evaluating both the spatial and temporal continuity of land use cover. Tailored for the analysis of geospatial datasets, this package enables users to quantify the spatial arrangement of habitats within a specified radius and track temporal changes in land use over a given time series.</p>
 <div class="section level2">
 <h2 id="id_11-spatial-continuity-analysis">1.1 Spatial Continuity Analysis<a class="anchor" aria-label="anchor" href="#id_11-spatial-continuity-analysis"></a>
@@ -124,16 +124,13 @@
 
 </div>
 <p>Now we can use the <code>calculate_prop</code> to calculate the proportion of each landuse in a certain radius, as an example we will use a radius of 200 meters to calculate the proportions of the nature raster created above, optionally, you can decide which landuses to calculate by using the argument <code>Vars</code>:</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>proportions <span class="ot">&lt;-</span> <span class="fu">calculate_prop</span>(<span class="at">Rast =</span> nature, </span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>                              <span class="at">Radius =</span> <span class="dv">200</span>, </span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>                              <span class="at">Vars =</span> <span class="fu">c</span>(<span class="st">"Agriculture"</span>, <span class="st">"Forest"</span>))</span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Starting to generate dummy stack [1/3]</span></span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Calculating the weight matrix [2/3]</span></span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Generating final stack [3/3]</span></span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="sc">|---------</span><span class="er">|</span><span class="sc">---------</span><span class="er">|</span><span class="sc">---------</span><span class="er">|</span><span class="sc">---------</span><span class="er">|</span></span>
-<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="er">=========================================</span></span>
-<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>                                          </span></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">proportions</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/calculate_prop.html">calculate_prop</a></span><span class="op">(</span>Rast <span class="op">=</span> <span class="va">nature</span>, </span>
+<span>                              Radius <span class="op">=</span> <span class="fl">200</span>, </span>
+<span>                              Vars <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Agriculture"</span>, <span class="st">"Forest"</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="co">#&gt; Starting to generate dummy stack [1/3]</span></span>
+<span><span class="co">#&gt; Calculating the weight matrix [2/3]</span></span>
+<span><span class="co">#&gt; Generating final stack [3/3]</span></span></code></pre></div>
 <p>We can see the result in figure <a href="#fig:propsdenmark">2.2</a></p>
 <div class="figure">
 <p><img src="reference/figures/README-propsdenmark-1.png" alt="Prportion of different habitat types within Denmark" width="100%"></p>
@@ -356,7 +353,12 @@
 </ul>
 </div>
 
-
+<div class="dev-status">
+<h2 data-toc-skip>Dev status</h2>
+<ul class="list-unstyled">
+<li><a href="https://github.com/derek-corcoran-barrios/SpatioTemporalCont/actions/workflows/R-CMD-check.yaml" class="external-link"><img src="https://github.com/derek-corcoran-barrios/SpatioTemporalCont/actions/workflows/R-CMD-check.yaml/badge.svg" alt="R-CMD-check"></a></li>
+</ul>
+</div>
 
   </aside>
 </div>
