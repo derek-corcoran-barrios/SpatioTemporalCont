@@ -90,11 +90,11 @@ summarise_polygons <- function(Rast, Polygons, Vars, dist = NULL, type = "Inside
   }
   Stack <- purrr::reduce(Stack, c)
   if(type == "Inside"){
-    DF <- terra::zonal(Stack, Polygons, "mean")
+    DF <- terra::zonal(Stack, Polygons, "mean", na.rm = TRUE)
   }else  if(type == "Both"){
-    DF <- terra::zonal(Stack, BufferPols, "mean")
+    DF <- terra::zonal(Stack, BufferPols, "mean", na.rm = TRUE)
   }else  if(type == "Outside"){
-    DF <- terra::zonal(Stack, ErasedPols, "mean")
+    DF <- terra::zonal(Stack, ErasedPols, "mean", na.rm = TRUE)
   }
   return(DF)
 }

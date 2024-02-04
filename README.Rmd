@@ -84,7 +84,7 @@ ggplot() + geom_spatraster(data = proportions) + facet_wrap(~lyr) + scale_fill_v
 
 ## Summarise data from polygons
 
-### Inside the polygons
+This is a function that is very useful to get dataset for shapefiles, the dataset is delivered as proportion of the chosen area that has a particular landuse. There are three types of analysis for this: Inside the polygons, Outside the polygon, and finally inside an outside the polygon, in figure 
 
 ```{r}
 data(Polygons)
@@ -92,34 +92,55 @@ data("Landuse_DK")
 Landuse <- terra::unwrap(Landuse_DK)
 
 v <- vect(Polygons, "polygons", crs = terra::crs(Landuse))
+```
+
+```{r geometries, echo=FALSE, fig.cap="Showing the summary for some simulated polygons inside, outside, and both"}
+v_buff <- terra::buffer(v, 2500)
+
+v_erased <- terra::erase(v_buff, v)
+v$type <- "Inside"
+v_buff$type <- "Both"
+v_erased$type <- "Outside"
+
+SmallLand <- Landuse |> terra::crop(v_buff)
+
+Pols <- list(v, v_buff, v_erased) |> 
+  purrr::reduce(rbind)
+ggplot() + geom_spatraster(data = SmallLand) + geom_spatvector(data = Pols) + facet_wrap(~type) + scale_fill_viridis_d()
+```
+
+
+### Inside the polygons
+
+```{r inside}
 Test <- summarise_polygons(Rast = Landuse, Polygons = v,
                            Vars = c("Agriculture","Forest"))
 ```
 
 
 ```{r, echo=FALSE}
-knitr::kable(Test)
+knitr::kable(Test, caption = "Proportions for the polygons for agriculture and forest")
 ```
 
-## Inside and outside the polygon
+### Inside and outside the polygon
 
 ```{r}
 TestBoth <- summarise_polygons(Rast = Landuse, Polygons = v,
                                Vars = c("Agriculture","Forest"), 
-                               type = "Both", dist = 200)
+                               type = "Both", dist = 2500)
 ```
 
 ```{r, echo = F}
 knitr::kable(TestBoth)
 ```
 
-## Outside the polygon
+### Outside the polygon
 
 ```{r}
 TestOut <- summarise_polygons(Rast = Landuse, 
                               Polygons = v,
                               Vars = c("Agriculture","Forest"), 
-                              type = "Outside", dist = 200)
+                              type = "Outside", dist = 2500)
 ```
 
 ```{r, echo = F}
