@@ -124,13 +124,16 @@
 
 </div>
 <p>Now we can use the <code>calculate_prop</code> to calculate the proportion of each landuse in a certain radius, as an example we will use a radius of 200 meters to calculate the proportions of the nature raster created above, optionally, you can decide which landuses to calculate by using the argument <code>Vars</code>:</p>
-<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">proportions</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/calculate_prop.html">calculate_prop</a></span><span class="op">(</span>Rast <span class="op">=</span> <span class="va">nature</span>, </span>
-<span>                              Radius <span class="op">=</span> <span class="fl">200</span>, </span>
-<span>                              Vars <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Agriculture"</span>, <span class="st">"Forest"</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="co">#&gt; Starting to generate dummy stack [1/3]</span></span>
-<span><span class="co">#&gt; Calculating the weight matrix [2/3]</span></span>
-<span><span class="co">#&gt; Generating final stack [3/3]</span></span></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>proportions <span class="ot">&lt;-</span> <span class="fu">calculate_prop</span>(<span class="at">Rast =</span> nature, </span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>                              <span class="at">Radius =</span> <span class="dv">200</span>, </span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>                              <span class="at">Vars =</span> <span class="fu">c</span>(<span class="st">"Agriculture"</span>, <span class="st">"Forest"</span>))</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Starting to generate dummy stack [1/3]</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Calculating the weight matrix [2/3]</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Generating final stack [3/3]</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="sc">|---------</span><span class="er">|</span><span class="sc">---------</span><span class="er">|</span><span class="sc">---------</span><span class="er">|</span><span class="sc">---------</span><span class="er">|</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="er">=========================================</span></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>                                          </span></code></pre></div>
 <p>We can see the result in figure <a href="#fig:propsdenmark">2.2</a></p>
 <div class="figure">
 <p><img src="reference/figures/README-propsdenmark-1.png" alt="Prportion of different habitat types within Denmark" width="100%"></p>
@@ -143,16 +146,25 @@
 <div class="section level2">
 <h2 id="id_22-summarise-data-from-polygons">2.2 Summarise data from polygons<a class="anchor" aria-label="anchor" href="#id_22-summarise-data-from-polygons"></a>
 </h2>
-<div class="section level3">
-<h3 id="id_221-inside-the-polygons">2.2.1 Inside the polygons<a class="anchor" aria-label="anchor" href="#id_221-inside-the-polygons"></a>
-</h3>
+<p>This is a function that is very useful to get dataset for shapefiles, the dataset is delivered as proportion of the chosen area that has a particular landuse. There are three types of analysis for this: Inside the polygons, Outside the polygon, and finally inside an outside the polygon, in figure</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">Polygons</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="st">"Landuse_DK"</span><span class="op">)</span></span>
 <span><span class="va">Landuse</span> <span class="op">&lt;-</span> <span class="fu">terra</span><span class="fu">::</span><span class="fu"><a href="https://rspatial.github.io/terra/reference/wrap.html" class="external-link">unwrap</a></span><span class="op">(</span><span class="va">Landuse_DK</span><span class="op">)</span></span>
 <span></span>
-<span><span class="va">v</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rspatial.github.io/terra/reference/vect.html" class="external-link">vect</a></span><span class="op">(</span><span class="va">Polygons</span>, <span class="st">"polygons"</span>, crs <span class="op">=</span> <span class="fu">terra</span><span class="fu">::</span><span class="fu"><a href="https://rspatial.github.io/terra/reference/crs.html" class="external-link">crs</a></span><span class="op">(</span><span class="va">Landuse</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="va">Test</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/summarise_polygons.html">summarise_polygons</a></span><span class="op">(</span>Rast <span class="op">=</span> <span class="va">Landuse</span>, Polygons <span class="op">=</span> <span class="va">v</span>,</span>
+<span><span class="va">v</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rspatial.github.io/terra/reference/vect.html" class="external-link">vect</a></span><span class="op">(</span><span class="va">Polygons</span>, <span class="st">"polygons"</span>, crs <span class="op">=</span> <span class="fu">terra</span><span class="fu">::</span><span class="fu"><a href="https://rspatial.github.io/terra/reference/crs.html" class="external-link">crs</a></span><span class="op">(</span><span class="va">Landuse</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<div class="figure">
+<p><img src="reference/figures/README-geometries-1.png" alt="Showing the summary for some simulated polygons inside, outside, and both" width="100%"></p>
+<p class="caption">
+</p>
+<p><span id="fig:geometries"></span>Figure 2.3: Showing the summary for some simulated polygons inside, outside, and both</p>
+
+</div>
+<div class="section level3">
+<h3 id="id_221-inside-the-polygons">2.2.1 Inside the polygons<a class="anchor" aria-label="anchor" href="#id_221-inside-the-polygons"></a>
+</h3>
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">Test</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/summarise_polygons.html">summarise_polygons</a></span><span class="op">(</span>Rast <span class="op">=</span> <span class="va">Landuse</span>, Polygons <span class="op">=</span> <span class="va">v</span>,</span>
 <span>                           Vars <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Agriculture"</span>,<span class="st">"Forest"</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="co">#&gt; Using option = inside</span></span></code></pre></div>
 <table class="table">
@@ -203,15 +215,15 @@
 </tr>
 </tbody>
 </table>
+<p><span id="tab:unnamed-chunk-3"></span>Table 2.1: Proportions for the polygons for agriculture and forest</p>
 </div>
-</div>
-<div class="section level2">
-<h2 id="id_23-inside-and-outside-the-polygon">2.3 Inside and outside the polygon<a class="anchor" aria-label="anchor" href="#id_23-inside-and-outside-the-polygon"></a>
-</h2>
-<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<div class="section level3">
+<h3 id="id_222-inside-and-outside-the-polygon">2.2.2 Inside and outside the polygon<a class="anchor" aria-label="anchor" href="#id_222-inside-and-outside-the-polygon"></a>
+</h3>
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">TestBoth</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/summarise_polygons.html">summarise_polygons</a></span><span class="op">(</span>Rast <span class="op">=</span> <span class="va">Landuse</span>, Polygons <span class="op">=</span> <span class="va">v</span>,</span>
 <span>                               Vars <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Agriculture"</span>,<span class="st">"Forest"</span><span class="op">)</span>, </span>
-<span>                               type <span class="op">=</span> <span class="st">"Both"</span>, dist <span class="op">=</span> <span class="fl">200</span><span class="op">)</span></span>
+<span>                               type <span class="op">=</span> <span class="st">"Both"</span>, dist <span class="op">=</span> <span class="fl">2500</span><span class="op">)</span></span>
 <span><span class="co">#&gt; Using option = Both</span></span></code></pre></div>
 <table class="table">
 <thead><tr class="header">
@@ -220,56 +232,56 @@
 </tr></thead>
 <tbody>
 <tr class="odd">
-<td align="right">0.6237364</td>
-<td align="right">0.1973044</td>
+<td align="right">0.5604590</td>
+<td align="right">0.2162687</td>
 </tr>
 <tr class="even">
-<td align="right">0.8721483</td>
-<td align="right">0.0451521</td>
+<td align="right">0.7971613</td>
+<td align="right">0.0568796</td>
 </tr>
 <tr class="odd">
-<td align="right">0.5581691</td>
-<td align="right">0.2790846</td>
+<td align="right">0.5581856</td>
+<td align="right">0.2807765</td>
 </tr>
 <tr class="even">
-<td align="right">0.7745592</td>
-<td align="right">0.0982368</td>
+<td align="right">0.7598044</td>
+<td align="right">0.1049355</td>
 </tr>
 <tr class="odd">
-<td align="right">0.7435345</td>
-<td align="right">0.0662716</td>
+<td align="right">0.6603998</td>
+<td align="right">0.1182466</td>
 </tr>
 <tr class="even">
-<td align="right">0.4213980</td>
-<td align="right">0.3403709</td>
+<td align="right">0.3187107</td>
+<td align="right">0.4529922</td>
 </tr>
 <tr class="odd">
-<td align="right">0.7583007</td>
-<td align="right">0.0608373</td>
+<td align="right">0.7548519</td>
+<td align="right">0.0765115</td>
 </tr>
 <tr class="even">
-<td align="right">0.5659341</td>
-<td align="right">0.3095238</td>
+<td align="right">0.6477639</td>
+<td align="right">0.1825726</td>
 </tr>
 <tr class="odd">
-<td align="right">0.4007720</td>
-<td align="right">0.3126407</td>
+<td align="right">0.5842719</td>
+<td align="right">0.2396753</td>
 </tr>
 <tr class="even">
-<td align="right">0.4144461</td>
-<td align="right">0.1931557</td>
+<td align="right">0.4760104</td>
+<td align="right">0.2141929</td>
 </tr>
 </tbody>
 </table>
 </div>
-<div class="section level2">
-<h2 id="id_24-outside-the-polygon">2.4 Outside the polygon<a class="anchor" aria-label="anchor" href="#id_24-outside-the-polygon"></a>
-</h2>
-<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<div class="section level3">
+<h3 id="id_223-outside-the-polygon">2.2.3 Outside the polygon<a class="anchor" aria-label="anchor" href="#id_223-outside-the-polygon"></a>
+</h3>
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">TestOut</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/summarise_polygons.html">summarise_polygons</a></span><span class="op">(</span>Rast <span class="op">=</span> <span class="va">Landuse</span>, </span>
 <span>                              Polygons <span class="op">=</span> <span class="va">v</span>,</span>
 <span>                              Vars <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Agriculture"</span>,<span class="st">"Forest"</span><span class="op">)</span>, </span>
-<span>                              type <span class="op">=</span> <span class="st">"Outside"</span>, dist <span class="op">=</span> <span class="fl">200</span><span class="op">)</span></span>
+<span>                              type <span class="op">=</span> <span class="st">"Outside"</span>, dist <span class="op">=</span> <span class="fl">2500</span><span class="op">)</span></span>
 <span><span class="co">#&gt; Using option = Outside</span></span></code></pre></div>
 <table class="table">
 <thead><tr class="header">
@@ -278,47 +290,48 @@
 </tr></thead>
 <tbody>
 <tr class="odd">
-<td align="right">0.6871069</td>
-<td align="right">0.1383648</td>
+<td align="right">0.5514466</td>
+<td align="right">0.2163814</td>
 </tr>
 <tr class="even">
-<td align="right">0.8538622</td>
-<td align="right">0.0688935</td>
+<td align="right">0.7826027</td>
+<td align="right">0.0604342</td>
 </tr>
 <tr class="odd">
-<td align="right">0.5436242</td>
-<td align="right">0.2841163</td>
+<td align="right">0.5573128</td>
+<td align="right">0.2816978</td>
 </tr>
 <tr class="even">
-<td align="right">0.6981520</td>
-<td align="right">0.0821355</td>
+<td align="right">0.7483896</td>
+<td align="right">0.1069312</td>
 </tr>
 <tr class="odd">
-<td align="right">0.6725044</td>
-<td align="right">0.0735552</td>
+<td align="right">0.6413641</td>
+<td align="right">0.1241902</td>
 </tr>
 <tr class="even">
-<td align="right">0.2937500</td>
-<td align="right">0.3520833</td>
+<td align="right">0.2710496</td>
+<td align="right">0.4973728</td>
 </tr>
 <tr class="odd">
-<td align="right">0.8020305</td>
-<td align="right">0.0913706</td>
+<td align="right">0.7530962</td>
+<td align="right">0.0902942</td>
 </tr>
 <tr class="even">
-<td align="right">0.5116279</td>
-<td align="right">0.2616279</td>
+<td align="right">0.6531282</td>
+<td align="right">0.1685166</td>
 </tr>
 <tr class="odd">
-<td align="right">0.5350467</td>
-<td align="right">0.2523364</td>
+<td align="right">0.6608587</td>
+<td align="right">0.2088096</td>
 </tr>
 <tr class="even">
-<td align="right">0.4011887</td>
-<td align="right">0.1485884</td>
+<td align="right">0.4951853</td>
+<td align="right">0.2332008</td>
 </tr>
 </tbody>
 </table>
+</div>
 </div>
 </div>
 
