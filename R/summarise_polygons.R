@@ -44,7 +44,7 @@
 #'   Vars = c("Agriculture","Forest"), type = "Outside", dist = 200)
 #' TestOut
 #' @importFrom terra rast ifel is.factor crop mask zonal
-#' @importFrom purrr reduce
+#' @importFrom purrr map reduce
 #' @export
 
 summarise_polygons <- function(Rast, Polygons, Vars, dist = NULL, type = "Inside", verbose = TRUE){
@@ -68,6 +68,8 @@ summarise_polygons <- function(Rast, Polygons, Vars, dist = NULL, type = "Inside
   else if(type == "Outside"){
     message("Using option = Outside")
     BufferPols <- terra::buffer(Polygons, dist)
+    ErasedPols <- purrr::map(1:nrow(BufferPols), ~erase(BufferPols[.x, ], Polygons[.x, ])) |>
+      purrr::reduce(rbind)
     ErasedPols <- terra::erase(BufferPols, Polygons)
     Temp <- Temp |>
       terra::crop(ErasedPols) |>

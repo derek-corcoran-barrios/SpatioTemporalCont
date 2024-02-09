@@ -97,7 +97,9 @@ v <- vect(Polygons, "polygons", crs = terra::crs(Landuse))
 ```{r geometries, echo=FALSE, fig.cap="Showing the summary for some simulated polygons inside, outside, and both"}
 v_buff <- terra::buffer(v, 2500)
 
-v_erased <- terra::erase(v_buff, v)
+v_erased <- purrr::map(1:nrow(v_buff), ~erase(v_buff[.x, ], v[.x, ])) |> 
+    purrr::reduce(rbind)
+
 v$type <- "Inside"
 v_buff$type <- "Both"
 v_erased$type <- "Outside"
@@ -106,9 +108,10 @@ SmallLand <- Landuse |> terra::crop(v_buff)
 
 Pols <- list(v, v_buff, v_erased) |> 
   purrr::reduce(rbind)
-ggplot() + geom_spatraster(data = SmallLand) + geom_spatvector(data = Pols) + facet_wrap(~type) + scale_fill_viridis_d()
+ggplot() + geom_spatraster(data = SmallLand) + geom_spatvector(data = Pols, alpha = 0.8) + facet_wrap(~type) + scale_fill_viridis_d()
 ```
 
+As it can be seen, now the polygons can overlap
 
 ### Inside the polygons
 

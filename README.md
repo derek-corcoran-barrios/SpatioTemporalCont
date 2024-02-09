@@ -149,6 +149,8 @@ some simulated polygons inside, outside, and both
 
 </div>
 
+As it can be seen, now the polygons can overlap
+
 ### 2.2.1 Inside the polygons
 
 ``` r
