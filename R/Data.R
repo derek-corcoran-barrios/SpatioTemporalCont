@@ -63,3 +63,27 @@
 #' v <- vect(Polygons, "polygons", crs = terra::crs(Landuse))
 #' plot(v)
 "Polygons"
+
+#' Corine Land Cover in Denmark
+#'
+#' This dataset is a subset of the Corine Land Cover (CLC) data for
+#' Denmark, derived from the fourth version of the basemap raster
+#' generated in 2021. The original basemap is a national map of land
+#' use and land cover for Denmark with a cell size of 10 x 10 meters.
+#' The subset provides an upscaled raster with 200 by 200 meter cells,
+#' classifying land into categories such as Resource extraction,
+#' Unmapped, Agriculture, Built up, Dry nature, Forest, Recreation,
+#' Water body, or Wet nature. The data allows for detailed analysis of
+#' land cover patterns in Denmark over the specified year.
+#'
+#'
+#' @format
+#' A wrapped SpatRaster with a 200 by 200-meter resolution:
+#' \describe{
+#'   \item{Land Cover Class}{Resource extraction, Unmapped, Agriculture, Built up, Dry nature, Forest, Recreation, Water body, Wet nature}
+#'   \item{Year}{Year of dataset}
+#'   ...
+#' }
+#' @source <CORINE Land Cover 2018 (vector/raster 100 m), Europe, 6-yearly>
+#'
+"corine"
