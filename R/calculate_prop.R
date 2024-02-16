@@ -7,8 +7,8 @@
 #' @param Rast A raster (class: SpatRaster).
 #' @param Radius A Radius in the units of the raster, to generate the
 #' proprotion.
-#' @param Vars if not null, a character vector to select the variables in
-#' which to use the function, see examples
+#' @param Vars if not null, a character vector to select the
+#' variables in which to use the function, see examples
 #' @param verbose logical, if true (default), then messages of the progress is
 #' written as messages in the function
 #' @return A stack of rasters with proportions, where each layer corresponds
@@ -18,10 +18,14 @@
 #' @examples
 #' # Load necessary libraries and create a sample categorical raster
 #' library(terra)
+#' # basic example code
 #'
-#' data(dry_wet_nature)
-#' nature <- terra::unwrap(dry_wet_nature)
-#' proportions <- calculate_prop(Rast = nature, Radius = 200)
+#' data("Landuse_DK")
+#' nature <- terra::unwrap(Landuse_DK)
+#'
+#' proportions <- calculate_prop(Rast = nature,
+#'                               Radius = 200,
+#'                               Vars = c("Agriculture", "Forest"))
 #'
 #' plot(proportions, colNA = "black")
 #'

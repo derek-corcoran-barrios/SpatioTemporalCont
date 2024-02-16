@@ -12,8 +12,8 @@ calculate_prop(Rast, Radius, Vars = NULL, verbose = TRUE)
 \item{Radius}{A Radius in the units of the raster, to generate the
 proprotion.}
 
-\item{Vars}{if not null, a character vector to select the variables in
-which to use the function, see examples}
+\item{Vars}{if not null, a character vector to select the
+variables in which to use the function, see examples}
 
 \item{verbose}{logical, if true (default), then messages of the progress is
 written as messages in the function}
@@ -30,10 +30,14 @@ landuse in each cell, considering only non NA cells.
 \examples{
 # Load necessary libraries and create a sample categorical raster
 library(terra)
+# basic example code
 
-data(dry_wet_nature)
-nature <- terra::unwrap(dry_wet_nature)
-proportions <- calculate_prop(Rast = nature, Radius = 200)
+data("Landuse_DK")
+nature <- terra::unwrap(Landuse_DK)
+
+proportions <- calculate_prop(Rast = nature,
+                              Radius = 200,
+                              Vars = c("Agriculture", "Forest"))
 
 plot(proportions, colNA = "black")
 
