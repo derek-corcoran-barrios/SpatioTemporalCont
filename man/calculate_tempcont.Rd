@@ -39,7 +39,7 @@ data(corine)
 corine <- terra::unwrap(corine)
 # see the dataset
 
-plot(corine, legend = F, col = "black")
+plot(corine, legend = FALSE, col = "black")
 
 Tempcont <- calculate_tempcont(Rast = corine)
 
@@ -58,4 +58,7 @@ plot(TempcontNum, colNA = "black")
 TempcontNum <- calculate_tempcont(Rast = corine,
                                  years = c(1990, 2000, 2006, 2012, 2018),
                                  Vars = c("Coniferous forest" ,"Mixed forest"))
+
+plot(TempcontNum, colNA = "black")
+
 }
