@@ -48,7 +48,7 @@
 #' TempcontNum <- calculate_tempcont(Rast = corine,
 #'                                  years = c(1990, 2000, 2006, 2012, 2018),
 #'                                  Vars = c("Coniferous forest" ,"Mixed forest"))
-#'
+#' @import terra
 #' @importFrom terra values ifel nlyr
 #' @export
 
@@ -64,7 +64,6 @@ calculate_tempcont <- function(Rast, years = NULL, Vars = NULL){
     Temp <- terra::ifel(Rast[[terra::nlyr(Rast)]] != Rast[[terra::nlyr(Rast) - 1]] | !(Rast[[terra::nlyr(Rast)]] %in% Vars), 0, Temp)
 
   }
-
 
   if(is.null(years)){
     # If the last layer of rast (The most resent one) is equal from the one just before that one there is a continuity of at least one
