@@ -4,7 +4,7 @@
 \alias{calculate_tempcont}
 \title{Calculate the temporal continuity of each landuse in each cell of a raster}
 \usage{
-calculate_tempcont(Rast, years = NULL)
+calculate_tempcont(Rast, years = NULL, Vars = NULL)
 }
 \arguments{
 \item{Rast}{A raster stack (class: SpatRaster), ordered from the
@@ -12,6 +12,9 @@ oldest to the newest}
 
 \item{years}{numeric vector of the same number of layers
 corresponding to the years, default is NULL}
+
+\item{Vars}{if not null, a character vector to select the
+variables in which to use the function, see examples}
 }
 \description{
 This function takes a stack of categorical rasters and generates a
@@ -34,6 +37,10 @@ library(terra)
 
 data(corine)
 corine <- terra::unwrap(corine)
+# see the dataset
+
+plot(corine, legend = F, col = "black")
+
 Tempcont <- calculate_tempcont(Rast = corine)
 
 plot(Tempcont, colNA = "black")
@@ -41,8 +48,15 @@ plot(Tempcont, colNA = "black")
 # Use years
 
 TempcontNum <- calculate_tempcont(Rast = corine,
-                           years = c(1990, 2000, 2006, 2012, 2018))
+                           years = c(1990, 2000, 2006, 2012, 2018
+                           ))
 
 plot(TempcontNum, colNA = "black")
+
+# use years and vars
+
+TempcontNum <- calculate_tempcont(Rast = corine,
+                                 years = c(1990, 2000, 2006, 2012, 2018),
+                                 Vars = c("Coniferous forest" ,"Mixed forest"))
 
 }
