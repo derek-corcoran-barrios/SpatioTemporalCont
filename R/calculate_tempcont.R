@@ -82,7 +82,8 @@ calculate_tempcont <- function(Rast, years = NULL, Vars = NULL){
         Temp <- terra::ifel(Temp == years[terra::nlyr(Rast)] -years[terra::nlyr(Rast) - (i -1)] & (Rast[[terra::nlyr(Rast) - (i -1)]] == Rast[[terra::nlyr(Rast) - i]]), (years[terra::nlyr(Rast)] - years[terra::nlyr(Rast) - (i)]), Temp)
       }
 
-  }
+    }
+  Temp[is.na(Rast[[1]])] <- NA
 
   return(Temp)
 }
